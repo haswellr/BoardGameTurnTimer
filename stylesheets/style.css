@@ -1,0 +1,258 @@
+
+body {
+    font-family: 'Denk One', serif;
+    font-weight: normal;
+
+    /* Color Palette: https://coolors.co/071013-eaeaea-eb5160-5d737e-fffff2 */
+    --primary-color: #071013ff;
+    --active-color: #eb5160ff;
+    --emphasis-color: #5d737eff;
+    --base-color: #fffff2ff;
+    --header-color: #eaeaeaff;
+}
+
+.header-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    color: var(--header-color);
+    background-color: var(--primary-color);
+}
+
+.header-bar h1 {
+    display: inline-block;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    margin: 0;
+    font-family: 'Trade Winds', serif;
+    font-weight: normal;
+    font-size: 2.3em;
+    cursor: pointer;
+}
+
+.header-bar button {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: none;
+    border: none;
+    min-width: 60px;
+}
+
+.header-bar button {
+    color: var(--header-color);
+    font-size: 32px;
+}
+
+.header-bar button:active {
+    color: var(--active-color);
+}
+
+.page-area {
+    position: absolute;
+    top: 60px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background-color: var(--base-color);
+}
+
+div.central {
+    display: inline-block;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 500px;
+    width: 100%;
+}
+
+.timer-area h1 {
+    display: inline-block;
+    position: relative;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0 0 0 20px;
+    font-weight: normal;
+    font-size: 1.8em;
+}
+
+.timer-area .active-timer {
+    position: relative;
+    background-color: var(--active-color);
+    width: 100%;
+    height: 140px;
+    border-radius: 4px;
+}
+
+.timer-area .active-timer .timer-card {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    cursor: pointer;
+}
+
+.timer-area .active-timer h1 {
+    font-size: 2.3em;
+}
+
+.timer-area .active-timer .time {
+    font-size: 2.3em;
+}
+
+.timer-area .active-timer .turns {
+    font-size: 1.0em;
+}
+
+.timer-area .waiting-timer-list {
+    position: relative;
+    width: 100%;
+    padding: 0;
+}
+
+.timer-area .waiting-timer-list li {
+    display: inline-block;
+    position: relative;
+    margin: 10px 0 0 0;
+    background-color: var(--emphasis-color);
+    width: 100%;
+    height: 80px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.timer-area .waiting-timer-list h1 {
+    margin-left: 16px;
+}
+
+.timer-area .waiting-timer-list .turns {
+    font-size: 0.9em;
+}
+
+.timer-area .right-side {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    margin: 0 20px 0 0;
+    height: 100%;
+    line-height: 100%;
+}
+
+.timer-area .active-timer .right-side {
+    min-width: 100px;
+}
+
+.timer-area .waiting-timer-list .right-side {
+    min-width: 75px;
+}
+
+.timer-area .right-side div {
+    line-height: 1.0em;
+}
+
+.timer-area .time {
+    font-size: 1.8em;
+    width: 100%;
+    text-align: center;
+}
+
+.timer-area .turns {
+    width: 100%;
+    text-align: center;
+}
+
+.time-turns-divider {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    height: 1px;
+    background: black;
+}
+
+.active-timer .time-turns-divider {
+    margin: 10px 0 10px 0;
+}
+
+.waiting-timer-list .time-turns-divider {
+    margin: 6px 0 6px 0;
+}
+
+.center-vertical {
+    display: inline-block;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+}
+
+.center-horizontal {
+    display: inline-block;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 100%;
+}
+
+.resume-button {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    left: 0;
+    width: 62px;
+    border-right: 2px solid rgba(0, 0, 0, 0.4);
+    user-select: none;
+}
+
+.resume-button:active {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.waiting-player-button {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    left: 64px;
+    right: 0;
+}
+
+.waiting-player-button:active {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.timer-area .waiting-timer-list .resume-button h1 {
+    line-height: normal;
+    margin: 0;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.actions-area {
+    margin-top: 25px;
+}
+
+.actions-area button {
+    background-color: var(--primary-color);
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    color: #fff;
+    font-family: 'Trade Winds', serif;
+    font-size: 24px;
+    height: 65px;
+    width: 240px;
+    margin: 0 2px 0 2px;
+}

@@ -1,0 +1,98 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>The B.G.T.T.</title>
+    <meta name="description" content="Board Game Turn Timer">
+    <meta name="author" content="Ryan Haswell">
+    <link rel="stylesheet" href="./stylesheets/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poller+One">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Trade+Winds">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Denk+One">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Jomhuria">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="header-bar">
+      <h1 id="headerTitle">TURN <span class="material-icons">alarm</span> TIMER</h1>
+      <button><span class="material-icons">menu</span></button>
+    </div>
+
+    <div id="pageArea" class="page-area">
+      <!-- TIMER PAGE -->
+      <!--
+      <div class="timer-area">
+        <div class="central">
+          <div id="activeTimer" class="active-timer">
+            <div class="timer-card">
+              <h1>Bob</h1>
+              <div class="right-side">
+                <div class="center-vertical">
+                  <div class="time">2:32</div>
+                  <div class="time-turns-divider"></div>
+                  <div class="turns">Turn 1</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ul id="waitingTimerList" class="waiting-timer-list">
+            <li>
+              <div class="resume-button">
+                <h1 class="material-icons">restore</h1>
+              </div>
+              <div class="waiting-player-button">
+                <h1>Jen</h1>
+                <div class="right-side">
+                  <div class="center-vertical">
+                    <div class="time">4:15</div>
+                    <div class="time-turns-divider"></div>
+                    <div class="turns">3 Turns</div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <h1>Bruno</h1>
+              <span class="time">2:46</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="actions-area">
+        <div class="central">
+          <div class="center-horizontal">
+            <button>Reset</button>
+            <button>Finish</button>
+          </div>
+        </div>
+      </div>
+      -->
+
+      <!-- STATS PAGE -->
+      <div class="stats-area">
+        <div class="central">
+          <ul class="player-stats-list">
+            <li>
+              <h1>Ryan</h1>
+              <ul class="turn-stats-list">
+                <li><b>Turn 1:</b> <span class="time">3:05</span></li>
+                <li><b>Turn 2:</b> 1:11</li>
+                <li><b>Turn 3:</b> 8:26</li>
+                <li><b>TOTAL: </b> 12:42</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+    <script src="js/eventRouter.js"></script>
+    <script src="js/views/viewComponents.js"></script>
+    <script src="js/views/timerPageViewController.js"></script>
+    <script src="js/views/statsPageViewController.js"></script>
+    <script src="js/viewController.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
