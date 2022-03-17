@@ -273,7 +273,7 @@ div.central {
 /* Stats Page */
 
 .stats-area .central {
-    max-width: none;
+    max-width: 100%;
 }
 
 .stats-area table {
@@ -327,7 +327,5 @@ div.central {
 }
 
 .stats-area h1 {
-    width: 100%;
-    text-align: center;
     font-family: 'Trade Winds', serif;
 }

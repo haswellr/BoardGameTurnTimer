@@ -121,6 +121,10 @@ class StatsPageViewController {
             <div class="full-width">
                 <div class="central">
                     <h1>Turn Times</h1>
+                </div>
+            </div>
+            <div class="full-width">
+                <div class="central">
                     <table>
                         <thead>
                             <tr>
@@ -220,6 +224,10 @@ class StatsPageViewController {
             <div class="full-width">
                 <div class="central">
                     <h1>Analysis</h1>
+                </div>
+            </div>
+            <div class="full-width">
+                <div class="central">
                     <table>
                         <thead>
                             <tr>
