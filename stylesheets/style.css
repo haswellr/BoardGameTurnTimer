@@ -6,7 +6,9 @@ body {
     /* Color Palette: https://coolors.co/071013-eaeaea-eb5160-5d737e-fffff2 */
     --primary-color: #071013ff;
     --active-color: #eb5160ff;
+    --active-color-rgb: 235, 81, 96;
     --emphasis-color: #5d737eff;
+    --emphasis-color-rgb: 93, 115, 126;
     --base-color: #fffff2ff;
     --header-color: #eaeaeaff;
 }
@@ -64,12 +66,24 @@ body {
     background-color: var(--base-color);
 }
 
+div.full-width {
+    display: inline-block;
+    position: relative;
+    left: 0;
+    width: 100%;
+}
+
 div.central {
     display: inline-block;
     position: relative;
     left: 50%;
     transform: translateX(-50%);
     max-width: 500px;
+    width: auto;
+    overflow: auto;
+}
+
+.timer-area div.central.timers {
     width: 100%;
 }
 
@@ -255,4 +269,66 @@ div.central {
     height: 65px;
     width: 240px;
     margin: 0 2px 0 2px;
+}
+
+/* Stats Page */
+
+.stats-area .central {
+    max-width: none;
+}
+
+.stats-area table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.stats-area thead tr {
+    background-color: var(--primary-color);
+    color: #ffff;
+    text-align: left;
+}
+
+.stats-area th,
+.stats-area td {
+    padding: 12px 15px;
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.stats-area tbody tr {
+    border-bottom: thin solid #dddddd;
+}
+
+.stats-area tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.stats-area tbody tr:last-of-type {
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.stats-area tbody td.total {
+    border-left: thin solid var(--primary-color);
+}
+
+.stats-area tbody tr.analysis {
+    background-color: rgba(93, 115, 126, 0.3);
+}
+
+.stats-area tbody td.highlight {
+    background-color: var(--active-color);
+}
+
+.stats-area tbody td.lowlight {
+    background-color: rgba(var(--emphasis-color-rgb), 0.7);
+}
+
+.stats-area h1 {
+    width: 100%;
+    text-align: center;
+    font-family: 'Trade Winds', serif;
 }

@@ -63,6 +63,7 @@ class TimerPageViewController {
             // <div class="central">
             const timerCentralElement = document.createElement("div");
             timerCentralElement.classList.add("central");
+            timerCentralElement.classList.add("timers");
                 // <div id="activeTimer" class="active-timer"></div>
                 const activeTimerElement = document.createElement("div");
                 activeTimerElement.classList.add("active-timer");

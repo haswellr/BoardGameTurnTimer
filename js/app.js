@@ -17,6 +17,10 @@ class Player {
     return this.turns.reduce((sum, turn) => sum + turn.timeElapsedInMilliseconds, 0);
   }
 
+  get averageTurnTime() {
+    return this.turns.map(turn => turn.timeElapsedInMilliseconds).reduce((sum, turnTime) => sum + turnTime, 0) / this.turns.length;
+  }
+
   get currentTurn() {
     return this.turns.length > 0 ? this.turns[this.turns.length - 1] : null;
   }
@@ -166,7 +170,6 @@ class App {
 
   onClickStats() {
     this.stateController.update(function(state) {
-      //state.activePlayer.currentTurn.pause();
       state.page = StateController.Page.STATS;
     });
   }
