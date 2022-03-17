@@ -1,4 +1,13 @@
 class Player {
+  static deserialize(playerObj) {
+    const player = new Player(playerObj.name);
+    if (playerObj.turns) {
+      player.turns = playerObj.turns.map(turnObj => Turn.deserialize(turnObj));
+    }
+    else player.turns = [];
+    return player;
+  }
+
   constructor(name) {
       this.name = name;
       this.turns = [];
@@ -44,6 +53,13 @@ class Turn {
     PAUSED: 1
   };
 
+  static deserialize(turnObj) {
+    const turn = new Turn();
+    turn.timeStored = turnObj.timeStored;
+    turn.startedTime = turnObj.startedTime;
+    return turn;
+  }
+
   constructor() {
       this.timeStored = 0;
       this.startedTime = -1;
@@ -77,6 +93,7 @@ class Turn {
 }
 
 class StateController {
+  static STATE_STORAGE_KEY = "state";
   static Page = {
     TIMERS: 0,
     STATS: 1
@@ -84,11 +101,28 @@ class StateController {
 
   constructor() {
       this.updateCallbacks = [];
-      this.state = {
-        page: null,
-        activePlayer: null,
-        waitingPlayers: []
-      };
+      // load state
+      const storedStateStr = window.localStorage.getItem(StateController.STATE_STORAGE_KEY);
+      if (storedStateStr) {
+        const storedState = JSON.parse(storedStateStr);
+        this.state = {
+          page: storedState.page,
+          activePlayer: Player.deserialize(storedState.activePlayer),
+          waitingPlayers: storedState.waitingPlayers
+            ? storedState.waitingPlayers.map(waitingPlayerObj => Player.deserialize(waitingPlayerObj))
+            : []
+        };
+      } else {
+        this.state = {
+          page: null,
+          activePlayer: null,
+          waitingPlayers: []
+        };
+      }
+  }
+
+  _saveStateLocally() {
+    window.localStorage.setItem(StateController.STATE_STORAGE_KEY, JSON.stringify(this.state));
   }
 
   // Registers a function run any time the state changes
@@ -98,6 +132,7 @@ class StateController {
 
   update(updateFunc) {
     updateFunc(this.state);
+    this._saveStateLocally();
     this.updateCallbacks.forEach((callbackFunc) => {
       callbackFunc(this.state);
     });
@@ -118,11 +153,14 @@ class App {
     EVENTS.registerOnClickReset(this.onClickReset.bind(this));
     EVENTS.registerOnClickHome(this.onClickHome.bind(this));
     // Set initial state
-    this._initializeState();
+    this.stateController.update(function(state) {
+      if (state.page == null) {
+        this._initializeState(state);
+      }
+    }.bind(this));
   }
 
-  _initializeState() {
-    this.stateController.update(function(state) {
+  _initializeState(state) {
       state.page = StateController.Page.TIMERS;
       state.activePlayer = new Player("Ryan");
       state.activePlayer.nextTurn();
@@ -132,7 +170,6 @@ class App {
       state.waitingPlayers.push(new Player("Bruno"));
       state.waitingPlayers.push(new Player("Stephanie"));
       state.waitingPlayers.push(new Player("Tyler"));
-    });
   }
 
   static setActivePlayer(state, player) {
@@ -175,7 +212,9 @@ class App {
   }
 
   onClickReset() {
-    this._initializeState();
+    this.stateController.update(function(state) {
+      this._initializeState(state);
+    }.bind(this));
   }
 
   onClickHome() {
