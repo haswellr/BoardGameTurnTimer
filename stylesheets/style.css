@@ -113,7 +113,68 @@ div.central {
     left: 0;
     right: 0;
     cursor: pointer;
+    overflow: hidden;
 }
+
+.timer-card:hover {
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
+.timer-card:active {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Timer card animation when turn is active */
+.timer-card.acting::before, .timer-card.acting::after {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    width: 80px;
+    height: 4px;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation-timing-function: linear;
+}
+
+.timer-card.acting::before {
+    top: 0;
+    animation: timer-card-border-1 4s infinite;
+}
+
+.timer-card.acting::after {
+    top: calc(100% - 4px);
+    animation: timer-card-border-2 4s infinite;
+}
+
+@keyframes timer-card-border-1 {
+    0% {
+        left: 0;
+        width: 0px;
+    }
+    50% {
+        left: 0;
+        width: 100%;
+    }
+    100% {
+        left: 100%;
+        width: 0px;
+    }
+}
+
+@keyframes timer-card-border-2 {
+    0% {
+        left: 100%;
+        width: 0px;
+    }
+    50% {
+        left: 0;
+        width: 100%;
+    }
+    100% {
+        left: 0;
+        width: 0px;
+    }
+}
+/* ----- */
 
 .timer-area .active-timer h1 {
     font-size: 2.3em;
@@ -228,8 +289,12 @@ div.central {
     user-select: none;
 }
 
+.resume-button:hover {
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
 .resume-button:active {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
 .waiting-player-button {
@@ -241,8 +306,12 @@ div.central {
     right: 0;
 }
 
+.waiting-player-button:hover {
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
 .waiting-player-button:active {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
 .timer-area .waiting-timer-list .resume-button h1 {

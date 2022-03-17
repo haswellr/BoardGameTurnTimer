@@ -4,6 +4,7 @@ class TimerPageViewController {
 
     constructor() {
         this.lastActivePlayer = null;
+        this.lastActivePlayerActing = null;
         this.lastWaitingPlayerList = [];
         this.activePlayerTimeElement = null;
         this.waitingPlayerTimeElements = [];
@@ -29,7 +30,7 @@ class TimerPageViewController {
         // Draw core structure - must happen first
         if(drawEntirePage) this.drawTimerPageSkeleton();
         // Draw active timer, if anything has changed
-        if(drawEntirePage || !activePlayer.equals(this.lastActivePlayer)) this.drawActiveTimer(activePlayer);
+        if(drawEntirePage || !activePlayer.equals(this.lastActivePlayer) || this.lastActivePlayerActing != activePlayer.isActing) this.drawActiveTimer(activePlayer);
         // Draw waiting timer list, if anything has changed
         if(drawEntirePage || !this._isLastWaitingPlayerListEqual(waitingPlayerList)) this.drawWaitingPlayers(waitingPlayerList);
     }
@@ -118,6 +119,7 @@ class TimerPageViewController {
     */
     drawActiveTimer(activePlayer) {
         this.lastActivePlayer = JSON.parse(JSON.stringify(activePlayer));
+        this.lastActivePlayerActing = activePlayer.isActing;
         // Clean up
         const currentTimerElement = document.getElementById(TimerPageViewController.ACTIVE_TIMER_ID);
         while (currentTimerElement.firstChild) {
@@ -127,6 +129,7 @@ class TimerPageViewController {
         // <div class="timer-card">
         const playerTimerElement = document.createElement("div");
         playerTimerElement.classList.add("timer-card");
+        if (activePlayer.isActing) playerTimerElement.classList.add("acting");
         playerTimerElement.addEventListener("click", function(event) {
             EVENTS.onClickPlayer(activePlayer);
         });
