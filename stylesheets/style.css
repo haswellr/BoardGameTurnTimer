@@ -19,7 +19,7 @@ body {
     left: 0;
     right: 0;
     height: 60px;
-    color: var(--header-color);
+    color: #fff;
     background-color: var(--primary-color);
 }
 
