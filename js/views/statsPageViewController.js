@@ -1,4 +1,6 @@
 class StatsPageViewController {
+    static GO_HOME_ID = "back-to-timer";
+
     constructor() {
         this.playerTimeElements = [];
 
@@ -22,24 +24,15 @@ class StatsPageViewController {
             pageAreaElement.removeChild(pageAreaElement.firstChild);
         }
         // Rebuild
-        //====test
         pageAreaElement.innerHTML = `
         <div class="stats-area">
             ${this._getSummaryTableHtml(playerList)}
             ${this._getAnalysisTableHtml(playerList)}
+            ${this._getActionsHtml()}
         </div>
         `;
-        //====
-        // <div class="stats-area">
-        /*const statsArea = document.createElement("div");
-        statsArea.classList.add("stats-area");
-            // <div class="central">
-            const centralStatsArea = document.createElement("div");
-            centralStatsArea.classList.add("central");
-                // <h1>Summary</h1>
-                const summaryHeader = document.createElement("h1");
-            statsArea.appendChild(centralStatsArea);
-        pageAreaElement.appendChild(statsArea);*/
+        // Rig listeners
+        this._rigListeners();
     }
 
     _getShortestRoundMilliseconds(playerList) {
@@ -249,5 +242,24 @@ class StatsPageViewController {
                 </div>
             </div>
         `;
+    }
+
+    _getActionsHtml() {
+        return `
+            <div class="actions-area">
+                <div class="central">
+                    <div class="center-horizontal">
+                        <button id="${StatsPageViewController.GO_HOME_ID}">Back to Timer</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    _rigListeners() {
+        const goHomeButton = document.getElementById(StatsPageViewController.GO_HOME_ID);
+        goHomeButton.addEventListener("click", function(event) {
+            EVENTS.onClickHome();
+        });
     }
 }

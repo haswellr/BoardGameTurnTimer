@@ -5,6 +5,7 @@ body {
 
     /* Color Palette: https://coolors.co/071013-eaeaea-eb5160-5d737e-fffff2 */
     --primary-color: #071013ff;
+    --primary-color-rgb: 7, 16, 19;
     --active-color: #eb5160ff;
     --active-color-rgb: 235, 81, 96;
     --emphasis-color: #5d737eff;
@@ -36,6 +37,14 @@ body {
     cursor: pointer;
 }
 
+.header-bar h1:hover {
+    color: var(--active-color);
+}
+
+.header-bar h1:active {
+    color: rgba(var(--active-color-rgb), 0.9);
+}
+
 .header-bar button {
     display: inline-block;
     position: absolute;
@@ -52,8 +61,12 @@ body {
     font-size: 32px;
 }
 
-.header-bar button:active {
+.header-bar button:hover {
     color: var(--active-color);
+}
+
+.header-bar button:active {
+    color: rgba(var(--active-color-rgb), 0.9);
 }
 
 .page-area {
@@ -340,6 +353,14 @@ div.central {
     max-width: calc(50% - 4px);
 }
 
+.actions-area button:hover {
+    color: var(--active-color);
+}
+
+.actions-area button:active {
+    color: rgba(var(--active-color-rgb), 0.9);
+}
+
 /* Stats Page */
 
 .stats-area .central {
@@ -398,4 +419,9 @@ div.central {
 
 .stats-area h1 {
     font-family: 'Trade Winds', serif;
+}
+
+.stats-area .actions-area button {
+    max-width: none;
+    width: 350px;
 }
