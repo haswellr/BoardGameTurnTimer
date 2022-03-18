@@ -35,22 +35,6 @@ class TimerPageViewController {
         if(drawEntirePage || !this._isLastWaitingPlayerListEqual(waitingPlayerList)) this.drawWaitingPlayers(waitingPlayerList);
     }
 
-    /*
-        <div class="timer-area">
-            <div class="central card-central">
-                <div id="activeTimer" class="active-timer"></div>
-                <ul id="waitingTimerList" class="waiting-timer-list"></ul>
-            </div>
-        </div>
-        <div class="actions-area">
-            <div class="central card-central">
-                <div class="center-horizontal">
-                    <button>New Game</button>
-                    <button>Stats</button>
-                </div>
-            </div>
-        </div>
-    */
     drawTimerPageSkeleton() {
         // Clean up
         const pageAreaElement = document.getElementById("pageArea");
@@ -87,9 +71,9 @@ class TimerPageViewController {
                 // <div class="center-horizontal">
                 const actionsCenterHorizontalElement = document.createElement("div");
                 actionsCenterHorizontalElement.classList.add("center-horizontal");
-                    // <button>Reset</button>
+                    // <button>Setup</button>
                     const resetButton = document.createElement("button");
-                    resetButton.appendChild(document.createTextNode("New Game"));
+                    resetButton.appendChild(document.createTextNode("Setup"));
                     resetButton.addEventListener("click", function(event) {
                         EVENTS.onClickReset();
                     });

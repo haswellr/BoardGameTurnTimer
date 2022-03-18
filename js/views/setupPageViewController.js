@@ -69,7 +69,7 @@ class SetupPageViewController {
                 .map(player => player.totalTimeElapsedInMilliseconds)
                 .reduce((sum, playerTime) => sum + playerTime, 0) > 0
             ? `<button id="${SetupPageViewController.BACK_ID}">Back to Timer</button>
-                <button id="${SetupPageViewController.START_BUTTON_ID}">Start!</button>`
+                <button id="${SetupPageViewController.START_BUTTON_ID}">New Game</button>`
             : `<button class="big" id="${SetupPageViewController.START_BUTTON_ID}">Start!</button>`
     }
 
