@@ -182,11 +182,17 @@ class App {
       state.waitingPlayers.push(new Player("Bodhi"));
   }
 
-  static setActivePlayer(state, player) {
-    if (state.activePlayer.isActing) state.activePlayer.currentTurn.pause();
-    state.waitingPlayers.push(state.activePlayer);
-    state.activePlayer = player;
+  _setActivePlayer(state, player) {
+    if (state.activePlayer) {
+      if (!state.activePlayer.equals(player) && state.activePlayer.isActing) state.activePlayer.currentTurn.pause();
+      state.waitingPlayers.push(state.activePlayer);
+    }
     state.waitingPlayers.splice(state.waitingPlayers.indexOf(player), 1);
+    state.activePlayer = player;
+    if (state.activePlayer.turns.length == 0) {
+      state.activePlayer.nextTurn();
+      state.activePlayer.currentTurn.pause();
+    }
   }
 
   onClickPlayer(player) {
@@ -196,10 +202,10 @@ class App {
         else player.currentTurn.start();
       }
       else {
-        App.setActivePlayer(state, player);
         player.nextTurn();
+        this._setActivePlayer(state, player);
       }
-    });
+    }.bind(this));
   }
 
   onClickResumeLastTurn(player) {
@@ -208,11 +214,10 @@ class App {
         player.currentTurn.start();
       }
       else {
-        App.setActivePlayer(state, player);
-        if (player.turns.length == 0) player.nextTurn();
-        else player.currentTurn.start();
+        this._setActivePlayer(state, player);
+        player.currentTurn.start();
       }
-    });
+    }.bind(this));
   }
 
   onClickStats() {
@@ -248,26 +253,25 @@ class App {
     const newPlayer = new Player(playerName);
     this.stateController.update(function(state) {
       if (state.activePlayer == null) {
-        state.activePlayer = newPlayer;
-        state.activePlayer.nextTurn();
-        state.activePlayer.currentTurn.pause();
+        this._setActivePlayer(state, newPlayer);
       } else {
         state.waitingPlayers.push(newPlayer);
       }
-    });
+    }.bind(this));
   }
 
   onClickRemovePlayer(player) {
     this.stateController.update(function(state) {
       if (state.activePlayer.equals(player)) {
-        state.activePlayer = state.waitingPlayers.length > 0
+        const newActivePlayer = state.waitingPlayers.length > 0
           ? state.waitingPlayers.splice(0, 1)[0]
           : null;
+        this._setActivePlayer(state, newActivePlayer);
       } else {
         const index = state.waitingPlayers.indexOf(player);
         state.waitingPlayers.splice(index, 1);
       }
-    });
+    }.bind(this));
   }
 }
 
