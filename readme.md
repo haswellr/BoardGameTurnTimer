@@ -19,7 +19,9 @@ If you have a question, comment, or just want to say hi, please shoot me an emai
 You should really just go browse around the app, but if you want to see more of it first, here's some screenshots:
 
 ![Board Game Turn Timer stats page image](https://raw.githubusercontent.com/haswellr/BoardGameTurnTimer/master/images/about/stats-page.png)
+
 *The stats page, where you can see once and for all how slow all of your friends are. (yes, for this screenshot I artificially made sure I had the fastest turns).*
 
 ![Board Game Turn Timer stats page image](https://raw.githubusercontent.com/haswellr/BoardGameTurnTimer/master/images/about/setup-page.png)
+
 *The setup page, where you'd plug in the players for your game. Really simple.*
