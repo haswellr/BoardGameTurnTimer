@@ -40,7 +40,7 @@ class SetupPageViewController {
                     ${this._getPlayerListItemsHtml(playerList)}
                     <li class="card input">
                         <form id="${SetupPageViewController.ADD_PLAYER_FORM_ID}">
-                            <input id="${SetupPageViewController.PLAYER_NAME_INPUT_ID}" type="text" placeholder="Enter player name..." autofocus="autofocus" required />
+                            <input id="${SetupPageViewController.PLAYER_NAME_INPUT_ID}" type="text" placeholder="Enter name..." autofocus="autofocus" required />
                             <div id="${SetupPageViewController.ADD_PLAYER_ID}" type="submit" form="addPlayerForm" class="player-card-button">
                                 <h1 class="material-icons">add</h1>
                             </div>
