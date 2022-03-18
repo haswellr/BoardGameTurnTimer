@@ -21,6 +21,7 @@ class SetupPageViewController {
 
     // See commented-out setup page HTML in index.html to see what we're building
     drawSetupPage(playerList) {
+        const oldPlayerList = this.lastPlayerList;
         this.lastPlayerList = JSON.parse(JSON.stringify(playerList));
         // Clean up
         const pageAreaElement = document.getElementById("pageArea");
@@ -60,8 +61,7 @@ class SetupPageViewController {
         // Rig listeners
         this._rigListeners(playerList);
         // Set Focus
-        const playerNameInputButton = document.getElementById(SetupPageViewController.PLAYER_NAME_INPUT_ID);
-        playerNameInputButton.focus();
+        this._setFocus(playerList, oldPlayerList);
     }
 
     _getActionButtonsHtml(playerList) {
@@ -118,5 +118,13 @@ class SetupPageViewController {
         startButton.addEventListener("click", function(event) {
             EVENTS.onClickStart();
         });
+    }
+
+    _setFocus(playerList, oldPlayerList) {
+        // If the user did not just delete a player, focus the input bar
+        if (oldPlayerList.length <= playerList.length) {
+            const playerNameInputButton = document.getElementById(SetupPageViewController.PLAYER_NAME_INPUT_ID);
+            playerNameInputButton.focus();
+        }
     }
 }
