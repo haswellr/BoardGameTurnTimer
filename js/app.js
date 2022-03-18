@@ -180,12 +180,12 @@ class App {
 
   _initializeState(state) {
       state.page = StateController.Page.SETUP;
-      state.activePlayer = new Player("Angelo");
+      state.activePlayer = new Player("Johnny Utah");
       state.activePlayer.nextTurn();
       state.activePlayer.currentTurn.pause();
       state.waitingPlayers = [];
-      state.waitingPlayers.push(new Player("Johnny Utah"));
       state.waitingPlayers.push(new Player("Bodhi"));
+      state.waitingPlayers.push(new Player("Angelo"));
   }
 
   _setActivePlayer(state, player) {
