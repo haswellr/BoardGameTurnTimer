@@ -172,7 +172,7 @@ class TimerPageViewController {
               <h1 class="material-icons">restore</h1>
             </div>
             <div class="waiting-player-button">
-                <h1>{playerName}</h1>
+                <h1 class="name">{playerName}</h1>
                 <div class="right-side">
                     <div class="center-vertical">
                         <div class="time">{totalTurnTime}</div>
@@ -214,8 +214,9 @@ class TimerPageViewController {
                 waitingPlayerButton.addEventListener("click", function(event) {
                     EVENTS.onClickPlayer(player);
                 });
-                    // <h1>{playerName}</h1>
+                    // <h1 class="name">{playerName}</h1>
                     const header = document.createElement("h1");
+                    header.classList.add("name");
                     header.appendChild(document.createTextNode(player.name));
                     waitingPlayerButton.appendChild(header);
                     // <div class="right-side">

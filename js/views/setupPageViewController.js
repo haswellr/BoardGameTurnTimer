@@ -76,7 +76,7 @@ class SetupPageViewController {
     _getPlayerListItemsHtml(playerList) {
         return playerList.map((player, index) => `
             <li class="card">
-                <h1>${player.name}</h1>
+                <h1 class="name">${player.name}</h1>
                 <div id="${SetupPageViewController.REMOVE_PLAYER_ID_PREFIX + index}" class="player-card-button">
                     <h1 class="material-icons">close</h1>
                 </div>

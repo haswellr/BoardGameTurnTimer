@@ -195,7 +195,7 @@ div .central.card-central {
 
 .timer-area .active-timer h1 {
     font-size: 2.3em;
-    max-width: 365px;
+    max-width: calc(100% - 130px);
 }
 
 .timer-area .active-timer .time {
@@ -225,7 +225,10 @@ div .central.card-central {
 
 .timer-area .waiting-timer-list h1 {
     margin-left: 16px;
-    max-width: 320px;
+}
+
+.timer-area .waiting-timer-list h1.name {
+    max-width: calc(100% - 110px);
 }
 
 .timer-area .waiting-timer-list .turns {
@@ -454,7 +457,10 @@ div .central.card-central {
 .setup-area .player-list h1 {
     margin-left: 24px;
     font-weight: normal;
-    max-width: 390px;
+}
+
+.setup-area .player-list h1.name {
+    max-width: calc(100% - 110px);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
