@@ -105,8 +105,6 @@ div .central.card-central {
     display: inline-block;
     position: relative;
     left: 0;
-    top: 50%;
-    transform: translateY(-50%);
     margin: 0 0 0 20px;
     font-weight: normal;
     font-size: 1.8em;
@@ -131,6 +129,11 @@ div .central.card-central {
     right: 0;
     cursor: pointer;
     overflow: hidden;
+    border: none;
+    background-color: transparent;
+    font-family: inherit;
+    text-align: left;
+    font-size: 1.0em;
 }
 
 .timer-card:hover {
@@ -306,10 +309,16 @@ div .central.card-central {
     top: 0;
     height: 100%;
     left: 0;
-    width: 62px;
+    width: 64px;
     border-right: 2px solid rgba(0, 0, 0, 0.4);
+    border-left: none;
+    border-top: none;
+    border-bottom: none;
     user-select: none;
+    color: #000;
     background-color: rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+    padding: 0;
 }
 
 .resume-button:hover {
@@ -327,6 +336,14 @@ div .central.card-central {
     height: 100%;
     left: 64px;
     right: 0;
+    border: none;
+    background-color: transparent;
+    font-family: inherit;
+    text-align: left;
+    padding: 0;
+    color: #000;
+    font-size: 1.0em;
+    cursor: pointer;
 }
 
 .waiting-player-button:hover {
@@ -340,9 +357,10 @@ div .central.card-central {
 .timer-area .waiting-timer-list .resume-button h1 {
     line-height: normal;
     margin: 0;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
+    top: auto;
+    left: auto;
+    transform: none;
+    font-size: 30px;
 }
 
 .actions-area {

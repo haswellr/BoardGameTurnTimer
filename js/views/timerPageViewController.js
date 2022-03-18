@@ -107,7 +107,7 @@ class TimerPageViewController {
     }
 
     /*
-        <div class="timer-card card">
+        <button class="timer-card card">
             <h1>{playerName}</h1>
             <div class="right-side">
                 <div class="center-vertical">
@@ -116,7 +116,7 @@ class TimerPageViewController {
                     <div class="turns">{currentTurnNum}</div>
                 </div>
             </div>
-        </div>
+        </button>
     */
     drawActiveTimer(activePlayer) {
         this.lastActivePlayer = JSON.parse(JSON.stringify(activePlayer));
@@ -127,8 +127,8 @@ class TimerPageViewController {
             currentTimerElement.removeChild(currentTimerElement.firstChild);
         }
         // Rebuild
-        // <div class="timer-card">
-        const playerTimerElement = document.createElement("div");
+        // <button class="timer-card">
+        const playerTimerElement = document.createElement("button");
         playerTimerElement.classList.add("timer-card");
         playerTimerElement.classList.add("card");
         if (activePlayer.isActing) playerTimerElement.classList.add("acting");
@@ -168,10 +168,10 @@ class TimerPageViewController {
     /*
         <!-- for each waiting player... -->
         <li>
-            <div class="resume-button">
+            <button class="resume-button">
               <h1 class="material-icons">restore</h1>
-            </div>
-            <div class="waiting-player-button">
+            </button>
+            <button class="waiting-player-button">
                 <h1 class="name">{playerName}</h1>
                 <div class="right-side">
                     <div class="center-vertical">
@@ -180,7 +180,7 @@ class TimerPageViewController {
                         <div class="turns">{totalNumTurns}</div>
                     </div>
                 </div>
-            </div>
+            </button>
         </li>
     */
     drawWaitingPlayers(waitingPlayerList) {
@@ -197,7 +197,7 @@ class TimerPageViewController {
             const listItem = document.createElement("li");
             listItem.classList.add("card");
                 // <div class="resume-button">
-                const resumeButton = document.createElement("div");
+                const resumeButton = document.createElement("button");
                 resumeButton.classList.add("resume-button");
                 resumeButton.addEventListener("click", function(event) {
                     EVENTS.onClickResumeLastTurn(player);
@@ -208,8 +208,8 @@ class TimerPageViewController {
                     resumeIcon.appendChild(document.createTextNode("restore"));
                     resumeButton.appendChild(resumeIcon);
                 listItem.appendChild(resumeButton);
-                // <div class="waiting-player-button">
-                const waitingPlayerButton = document.createElement("div");
+                // <button class="waiting-player-button">
+                const waitingPlayerButton = document.createElement("button");
                 waitingPlayerButton.classList.add("waiting-player-button");
                 waitingPlayerButton.addEventListener("click", function(event) {
                     EVENTS.onClickPlayer(player);
