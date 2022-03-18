@@ -2,6 +2,7 @@
 body {
     font-family: 'Denk One', serif;
     font-weight: normal;
+    margin: 0;
 
     /* Color Palette: https://coolors.co/071013-eaeaea-eb5160-5d737e-fffff2 */
     --primary-color: #071013ff;
@@ -14,6 +15,7 @@ body {
     --emphasis-2-color: #D9F0FF;
 }
 
+/* Header */
 .header-bar {
     position: absolute;
     top: 0;
@@ -70,7 +72,31 @@ body {
     color: rgba(var(--active-color-rgb), 0.9);
 }
 
-.page-area {
+/* Footer */
+.footer-bar {
+    width: 100%;
+    text-align: center;
+    font-size: 1.5em;
+    font-family: 'Jomhuria';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    height: 25px;
+    overflow: hidden;
+}
+
+.footer-bar span {
+    display: inline-block;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.body-area {
     position: absolute;
     top: 60px;
     left: 0;
@@ -78,6 +104,10 @@ body {
     padding: 20px;
     min-height: calc(100% - 100px); /* 100px = top + 2*padding */
     background-color: var(--base-color);
+}
+
+.page-area {
+    margin-bottom: 40px;/* must match footer-bar height+margin - body-area padding. yes this is janky. */
 }
 
 div.full-width {
@@ -378,7 +408,7 @@ div .central.card-central {
     height: 65px;
     width: 240px;
     margin: 0 2px 0 2px;
-    max-width: calc(50% - 4px);
+    max-width: calc(50% - 6px);
 }
 
 .actions-area button:hover {
