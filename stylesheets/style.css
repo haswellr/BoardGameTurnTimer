@@ -11,7 +11,7 @@ body {
     --emphasis-color: #5d737eff;
     --emphasis-color-rgb: 93, 115, 126;
     --base-color: #fffff2ff;
-    --header-color: #eaeaeaff;
+    --emphasis-2-color: #D9F0FF;
 }
 
 .header-bar {
@@ -54,10 +54,11 @@ body {
     background: none;
     border: none;
     min-width: 60px;
+    cursor: pointer;
 }
 
 .header-bar button {
-    color: var(--header-color);
+    color: #fff;
     font-size: 32px;
 }
 
@@ -96,7 +97,7 @@ div.central {
     overflow: auto;
 }
 
-.timer-area div.central.timers {
+div .central.card-central {
     width: 100%;
 }
 
@@ -226,7 +227,7 @@ div.central {
     font-size: 0.9em;
 }
 
-.timer-area .right-side {
+.card .right-side {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -300,6 +301,7 @@ div.central {
     width: 62px;
     border-right: 2px solid rgba(0, 0, 0, 0.4);
     user-select: none;
+    background-color: rgba(0, 0, 0, 0.08);
 }
 
 .resume-button:hover {
@@ -424,4 +426,95 @@ div.central {
 .stats-area .actions-area button {
     max-width: none;
     width: 350px;
+}
+
+/* Setup Page */
+
+.setup-area .player-list {
+    position: relative;
+    width: 100%;
+    padding: 0;
+}
+
+.setup-area .player-list li {
+    display: inline-block;
+    position: relative;
+    margin: 10px 0 0 0;
+    background-color: var(--emphasis-color);
+    width: 100%;
+    height: 80px;
+    border-radius: 4px;
+}
+
+.setup-area .player-list h1 {
+    margin-left: 24px;
+    font-weight: normal;
+}
+
+.setup-area .actions-area button.big {
+    max-width: none;
+    width: 350px;
+}
+
+.player-card-button {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    right: 0;
+    width: 80px;
+    border-left: 2px solid rgba(0, 0, 0, 0.4);
+    user-select: none;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+.player-card-button:hover {
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
+.player-card-button:active {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.setup-area .player-card-button h1 {
+    display: inline-block;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+}
+
+.setup-area .input .player-card-button {
+    background-color: var(--active-color);
+}
+
+.setup-area .input .player-card-button:hover {
+    background-color: rgba(var(--active-color-rgb), 0.9);
+}
+
+.setup-area .input .player-card-button:active {
+    background-color: rgba(var(--active-color-rgb), 0.8);
+}
+
+.setup-area .card input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 80px;
+    border: 4px solid var(--emphasis-color);
+    font-family: 'Denk One';
+    font-size: 2em;
+    padding-left: 24px;
+    background-color: var(--emphasis-color);
+}
+
+.setup-area .card input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.setup-area .card input:focus-visible {
+    outline: var(--primary-color) auto 1px;
 }

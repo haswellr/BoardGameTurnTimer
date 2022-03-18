@@ -1,17 +1,8 @@
 class StatsPageViewController {
     static GO_HOME_ID = "back-to-timer";
 
-    constructor() {
-        this.playerTimeElements = [];
-
-        // Update time elements every 1 second. This will go on forever - so don't make multiple of these classes wildly. Yes this is a bit janky, but no need to overcomplicate things yet.
-        setInterval(function() {
-            this.playerTimeElements.forEach((timeElement) => timeElement.draw());
-        }.bind(this), 1000);
-    }
-
     draw(drawEntirePage, playerList) {
-        // This page has no dynamic sub-elements other than the timers, so either draw full thing or nothing
+        // This page has no dynamic sub-elements, so either draw full thing or nothing
         if(!drawEntirePage) return;
         this.drawStatsPage(playerList);
     }

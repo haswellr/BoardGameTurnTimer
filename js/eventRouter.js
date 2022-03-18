@@ -5,6 +5,9 @@ class EventRouter {
         this.onClickStatsCallbacks = [];
         this.onClickResetCallbacks = [];
         this.onClickHomeCallbacks = [];
+        this.onClickAddPlayerCallbacks = [];
+        this.onClickRemovePlayerCallbacks = [];
+        this.onClickStartCallbacks = [];
     }
 
     _registerCallback(callbackList, callbackFunc) {
@@ -79,6 +82,45 @@ class EventRouter {
 
     deregisterOnClickHome(callbackFunc) {
         _this._deregisterCallback(this.onClickHomeCallbacks, callbackFunc);
+    }
+
+    // On Click Start
+    onClickStart() {
+        this.onClickStartCallbacks.forEach(callback => callback());
+    }
+
+    registerOnClickStart(callbackFunc) {
+        this._registerCallback(this.onClickStartCallbacks, callbackFunc);
+    }
+
+    deregisterOnClickStart(callbackFunc) {
+        _this._deregisterCallback(this.onClickStartCallbacks, callbackFunc);
+    }
+
+    // On Click Add Player
+    onClickAddPlayer(playerName) {
+        this.onClickAddPlayerCallbacks.forEach(callback => callback(playerName));
+    }
+
+    registerOnClickAddPlayer(callbackFunc) {
+        this._registerCallback(this.onClickAddPlayerCallbacks, callbackFunc);
+    }
+
+    deregisterOnClickAddPlayer(callbackFunc) {
+        _this._deregisterCallback(this.onClickAddPlayerCallbacks, callbackFunc);
+    }
+
+    // On Click Remove Player
+    onClickRemovePlayer(player) {
+        this.onClickRemovePlayerCallbacks.forEach(callback => callback(player));
+    }
+
+    registerOnClickRemovePlayer(callbackFunc) {
+        this._registerCallback(this.onClickRemovePlayerCallbacks, callbackFunc);
+    }
+
+    deregisterOnClickRemovePlayer(callbackFunc) {
+        _this._deregisterCallback(this.onClickRemovePlayerCallbacks, callbackFunc);
     }
 }
 

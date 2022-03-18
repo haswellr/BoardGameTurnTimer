@@ -17,16 +17,15 @@
   <body>
     <div class="header-bar">
       <h1 id="headerTitle">TURN <span class="material-icons">alarm</span> TIMER</h1>
-      <button><span class="material-icons">menu</span></button>
     </div>
 
     <div id="pageArea" class="page-area">
       <!-- TIMER PAGE -->
       <!--
       <div class="timer-area">
-        <div class="central">
+        <div class="central card-central">
           <div id="activeTimer" class="active-timer">
-            <div class="timer-card">
+            <div class="timer-card card">
               <h1>Bob</h1>
               <div class="right-side">
                 <div class="center-vertical">
@@ -38,7 +37,7 @@
             </div>
           </div>
           <ul id="waitingTimerList" class="waiting-timer-list">
-            <li>
+            <li class="card">
               <div class="resume-button">
                 <h1 class="material-icons">restore</h1>
               </div>
@@ -63,7 +62,7 @@
       <div class="actions-area">
         <div class="central">
           <div class="center-horizontal">
-            <button>Reset</button>
+            <button>New Game</button>
             <button>Finish</button>
           </div>
         </div>
@@ -71,6 +70,7 @@
       -->
 
       <!-- STATS PAGE -->
+      <!--
       <div class="stats-area">
         <div class="full-width">
           <div class="central">
@@ -196,6 +196,41 @@
           </div>
         </div>
       </div>
+      -->
+
+      <!-- SETUP PAGE -->
+      <div class="setup-area">
+        <div class="full-width">
+          <div class="central">
+            <h1>Player Setup</h1>
+          </div>
+        </div>
+        <div class="central card-central">
+          <ul class="player-list">
+            <li class="card">
+              <h1>Jen</h1>
+              <div class="player-card-button">
+                <h1 class="material-icons">close</h1>
+              </div>
+            </li>
+            <li class="card input">
+              <form id="addPlayerForm">
+                <input type="text" placeholder="Enter player name..." autofocus="autofocus" required />
+                <div type="submit" form="addPlayerForm" class="player-card-button">
+                  <h1 class="material-icons">add</h1>
+                </div>
+              </form>
+            </li>
+          </ul>
+        </div>
+        <div class="actions-area">
+          <div class="central">
+            <div class="center-horizontal">
+              <button id="start-game">Start!</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
 
@@ -203,6 +238,7 @@
     <script src="js/views/viewComponents.js"></script>
     <script src="js/views/timerPageViewController.js"></script>
     <script src="js/views/statsPageViewController.js"></script>
+    <script src="js/views/setupPageViewController.js"></script>
     <script src="js/viewController.js"></script>
     <script src="js/app.js"></script>
   </body>

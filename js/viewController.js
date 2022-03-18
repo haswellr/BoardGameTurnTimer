@@ -3,6 +3,7 @@ class ViewController {
         this.lastPage = null;
         this.timerPageViewController = new TimerPageViewController();
         this.statsPageViewController = new StatsPageViewController();
+        this.setupPageViewController = new SetupPageViewController();
         
         this.registerStaticEvents();
     }
@@ -20,12 +21,17 @@ class ViewController {
             this.lastPage = state.page;
             drawEntirePage = true;
         }
+        const fullPlayerList = [...state.waitingPlayers];
+        if (state.activePlayer != null) fullPlayerList.splice(0, 0, state.activePlayer);
         switch(state.page) {
             case StateController.Page.TIMERS:
                 this.timerPageViewController.draw(drawEntirePage, state.activePlayer, state.waitingPlayers);
                 break;
             case StateController.Page.STATS:
-                this.statsPageViewController.draw(drawEntirePage, [...state.waitingPlayers, state.activePlayer]);
+                this.statsPageViewController.draw(drawEntirePage, fullPlayerList);
+                break;
+            case StateController.Page.SETUP:
+                this.setupPageViewController.draw(drawEntirePage, fullPlayerList);
                 break;
             default:
                 throw "Unexpected page";

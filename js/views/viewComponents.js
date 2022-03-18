@@ -15,7 +15,7 @@ class TimeFormatter {
 }
 
 class TurnTimeElement {
-    constructor(turn, element) { 
+    constructor(turn, element) {
         this.turn = turn;
         this.lastTurnState = null;
         this.domElement = element;

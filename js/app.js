@@ -1,5 +1,6 @@
 class Player {
   static deserialize(playerObj) {
+    if (playerObj == null) return null;
     const player = new Player(playerObj.name);
     if (playerObj.turns) {
       player.turns = playerObj.turns.map(turnObj => Turn.deserialize(turnObj));
@@ -44,6 +45,10 @@ class Player {
       turn.start();
       this.turns.push(turn);
       return turn;
+  }
+
+  reset() {
+    this.turns = [];
   }
 }
 
@@ -96,7 +101,8 @@ class StateController {
   static STATE_STORAGE_KEY = "state";
   static Page = {
     TIMERS: 0,
-    STATS: 1
+    STATS: 1,
+    SETUP: 2
   };
 
   constructor() {
@@ -152,24 +158,28 @@ class App {
     EVENTS.registerOnClickStats(this.onClickStats.bind(this));
     EVENTS.registerOnClickReset(this.onClickReset.bind(this));
     EVENTS.registerOnClickHome(this.onClickHome.bind(this));
+    EVENTS.registerOnClickStart(this.onClickStart.bind(this));
+    EVENTS.registerOnClickAddPlayer(this.onClickAddPlayer.bind(this));
+    EVENTS.registerOnClickRemovePlayer(this.onClickRemovePlayer.bind(this));
     // Set initial state
     this.stateController.update(function(state) {
       if (state.page == null) {
         this._initializeState(state);
+      } else {
+        if (state.activePlayer?.isActing) state.page = StateController.Page.TIMERS;
+        else state.page = StateController.Page.SETUP;
       }
     }.bind(this));
   }
 
   _initializeState(state) {
-      state.page = StateController.Page.TIMERS;
-      state.activePlayer = new Player("Ryan");
+      state.page = StateController.Page.SETUP;
+      state.activePlayer = new Player("Angelo");
       state.activePlayer.nextTurn();
       state.activePlayer.currentTurn.pause();
       state.waitingPlayers = [];
-      state.waitingPlayers.push(new Player("Jen"));
-      state.waitingPlayers.push(new Player("Bruno"));
-      state.waitingPlayers.push(new Player("Stephanie"));
-      state.waitingPlayers.push(new Player("Tyler"));
+      state.waitingPlayers.push(new Player("Johnny Utah"));
+      state.waitingPlayers.push(new Player("Bodhi"));
   }
 
   static setActivePlayer(state, player) {
@@ -213,13 +223,50 @@ class App {
 
   onClickReset() {
     this.stateController.update(function(state) {
-      this._initializeState(state);
+      state.activePlayer?.reset();
+      state.activePlayer?.nextTurn();
+      state.activePlayer?.currentTurn.pause();
+      state.waitingPlayers.forEach(player => player.reset(false));
+      state.page = StateController.Page.SETUP;
     }.bind(this));
   }
 
   onClickHome() {
     this.stateController.update(function(state) {
       state.page = StateController.Page.TIMERS;
+    });
+  }
+
+  onClickStart() {
+    this.stateController.update(function(state) {
+      state.page = StateController.Page.TIMERS;
+      state.activePlayer.currentTurn.start();
+    });
+  }
+
+  onClickAddPlayer(playerName) {
+    const newPlayer = new Player(playerName);
+    this.stateController.update(function(state) {
+      if (state.activePlayer == null) {
+        state.activePlayer = newPlayer;
+        state.activePlayer.nextTurn();
+        state.activePlayer.currentTurn.pause();
+      } else {
+        state.waitingPlayers.push(newPlayer);
+      }
+    });
+  }
+
+  onClickRemovePlayer(player) {
+    this.stateController.update(function(state) {
+      if (state.activePlayer.equals(player)) {
+        state.activePlayer = state.waitingPlayers.length > 0
+          ? state.waitingPlayers.splice(0, 1)[0]
+          : null;
+      } else {
+        const index = state.waitingPlayers.indexOf(player);
+        state.waitingPlayers.splice(index, 1);
+      }
     });
   }
 }

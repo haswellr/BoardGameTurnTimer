@@ -37,15 +37,15 @@ class TimerPageViewController {
 
     /*
         <div class="timer-area">
-            <div class="central">
+            <div class="central card-central">
                 <div id="activeTimer" class="active-timer"></div>
                 <ul id="waitingTimerList" class="waiting-timer-list"></ul>
             </div>
         </div>
         <div class="actions-area">
-            <div class="central">
+            <div class="central card-central">
                 <div class="center-horizontal">
-                    <button>Reset</button>
+                    <button>New Game</button>
                     <button>Stats</button>
                 </div>
             </div>
@@ -64,6 +64,7 @@ class TimerPageViewController {
             // <div class="central">
             const timerCentralElement = document.createElement("div");
             timerCentralElement.classList.add("central");
+            timerCentralElement.classList.add("card-central");
             timerCentralElement.classList.add("timers");
                 // <div id="activeTimer" class="active-timer"></div>
                 const activeTimerElement = document.createElement("div");
@@ -88,7 +89,7 @@ class TimerPageViewController {
                 actionsCenterHorizontalElement.classList.add("center-horizontal");
                     // <button>Reset</button>
                     const resetButton = document.createElement("button");
-                    resetButton.appendChild(document.createTextNode("Reset"));
+                    resetButton.appendChild(document.createTextNode("New Game"));
                     resetButton.addEventListener("click", function(event) {
                         EVENTS.onClickReset();
                     });
@@ -106,7 +107,7 @@ class TimerPageViewController {
     }
 
     /*
-        <div class="timer-card">
+        <div class="timer-card card">
             <h1>{playerName}</h1>
             <div class="right-side">
                 <div class="center-vertical">
@@ -129,6 +130,7 @@ class TimerPageViewController {
         // <div class="timer-card">
         const playerTimerElement = document.createElement("div");
         playerTimerElement.classList.add("timer-card");
+        playerTimerElement.classList.add("card");
         if (activePlayer.isActing) playerTimerElement.classList.add("acting");
         playerTimerElement.addEventListener("click", function(event) {
             EVENTS.onClickPlayer(activePlayer);
@@ -193,6 +195,7 @@ class TimerPageViewController {
         waitingPlayerList.forEach((player) => {
             // <li>
             const listItem = document.createElement("li");
+            listItem.classList.add("card");
                 // <div class="resume-button">
                 const resumeButton = document.createElement("div");
                 resumeButton.classList.add("resume-button");
