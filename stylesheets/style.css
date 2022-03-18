@@ -371,6 +371,10 @@ div .central.card-central {
     color: rgba(var(--active-color-rgb), 0.9);
 }
 
+.actions-area button:focus {
+    color: var(--active-color);
+}
+
 /* Stats Page */
 
 .stats-area .central {
@@ -479,6 +483,9 @@ div .central.card-central {
     right: 0;
     width: 80px;
     border-left: 2px solid rgba(0, 0, 0, 0.4);
+    border-right: none;
+    border-bottom: none;
+    border-top: none;
     user-select: none;
     cursor: pointer;
     background-color: rgba(0, 0, 0, 0.08);
@@ -495,9 +502,6 @@ div .central.card-central {
 .setup-area .player-card-button h1 {
     display: inline-block;
     position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     margin: 0;
 }
 
@@ -531,5 +535,5 @@ div .central.card-central {
 }
 
 .setup-area .card input:focus-visible {
-    outline: var(--primary-color) auto 1px;
+    outline: rgba(var(--primary-color-rgb), 0.8) auto 1px;
 }

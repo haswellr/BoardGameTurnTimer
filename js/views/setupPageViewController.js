@@ -41,9 +41,9 @@ class SetupPageViewController {
                     <li class="card input">
                         <form id="${SetupPageViewController.ADD_PLAYER_FORM_ID}">
                             <input id="${SetupPageViewController.PLAYER_NAME_INPUT_ID}" type="text" placeholder="Enter name..." autofocus="autofocus" required />
-                            <div id="${SetupPageViewController.ADD_PLAYER_ID}" type="submit" form="addPlayerForm" class="player-card-button">
+                            <button id="${SetupPageViewController.ADD_PLAYER_ID}" type="button" form="addPlayerForm" class="player-card-button">
                                 <h1 class="material-icons">add</h1>
-                            </div>
+                            </button>
                         </form>
                     </li>
                 </ul>
@@ -77,9 +77,9 @@ class SetupPageViewController {
         return playerList.map((player, index) => `
             <li class="card">
                 <h1 class="name">${player.name}</h1>
-                <div id="${SetupPageViewController.REMOVE_PLAYER_ID_PREFIX + index}" class="player-card-button">
+                <button id="${SetupPageViewController.REMOVE_PLAYER_ID_PREFIX + index}" class="player-card-button">
                     <h1 class="material-icons">close</h1>
-                </div>
+                </button>
             </li> 
         `).join("\n");
     }
