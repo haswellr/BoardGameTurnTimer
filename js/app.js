@@ -161,13 +161,19 @@ class App {
     EVENTS.registerOnClickStart(this.onClickStart.bind(this));
     EVENTS.registerOnClickAddPlayer(this.onClickAddPlayer.bind(this));
     EVENTS.registerOnClickRemovePlayer(this.onClickRemovePlayer.bind(this));
+    EVENTS.registerOnChangeURL(this.onChangeURL.bind(this));
     // Set initial state
     this.stateController.update(function(state) {
+      // First, if state is not set at all, initialize. Otherwise, look for page in URL. Otherwise, figure out the ideal page ourselves.
       if (state.page == null) {
         this._initializeState(state);
       } else {
-        if (state.activePlayer?.isActing) state.page = StateController.Page.TIMERS;
-        else state.page = StateController.Page.SETUP;
+        const pageFromCurrentURLHash = VIEW.getPageFromLabel(VIEW.getCurrentPageLabel());
+        if (pageFromCurrentURLHash) state.page = pageFromCurrentURLHash;
+        else {
+          if (state.activePlayer?.isActing) state.page = StateController.Page.TIMERS;
+          else state.page = StateController.Page.SETUP;
+        }
       }
     }.bind(this));
   }
@@ -228,10 +234,6 @@ class App {
 
   onClickReset() {
     this.stateController.update(function(state) {
-      state.activePlayer?.reset();
-      state.activePlayer?.nextTurn();
-      state.activePlayer?.currentTurn.pause();
-      state.waitingPlayers.forEach(player => player.reset(false));
       state.page = StateController.Page.SETUP;
     }.bind(this));
   }
@@ -245,7 +247,9 @@ class App {
   onClickStart() {
     this.stateController.update(function(state) {
       state.page = StateController.Page.TIMERS;
-      state.activePlayer.currentTurn.start();
+      state.activePlayer?.reset();
+      state.activePlayer?.nextTurn();
+      state.waitingPlayers.forEach(player => player.reset());
     });
   }
 
@@ -272,6 +276,14 @@ class App {
         state.waitingPlayers.splice(index, 1);
       }
     }.bind(this));
+  }
+
+  onChangeURL() {
+    const newPageLabel = VIEW.getCurrentPageLabel();
+    const newPageId = VIEW.getPageFromLabel(newPageLabel);
+    this.stateController.update(function(state) {
+      state.page = newPageId;
+    });
   }
 }
 

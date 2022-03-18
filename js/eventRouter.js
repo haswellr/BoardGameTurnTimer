@@ -8,6 +8,7 @@ class EventRouter {
         this.onClickAddPlayerCallbacks = [];
         this.onClickRemovePlayerCallbacks = [];
         this.onClickStartCallbacks = [];
+        this.onChangeURLCallbacks = [];
     }
 
     _registerCallback(callbackList, callbackFunc) {
@@ -121,6 +122,19 @@ class EventRouter {
 
     deregisterOnClickRemovePlayer(callbackFunc) {
         _this._deregisterCallback(this.onClickRemovePlayerCallbacks, callbackFunc);
+    }
+
+    // On Change URL
+    onChangeURL() {
+        this.onChangeURLCallbacks.forEach(callback => callback());
+    }
+
+    registerOnChangeURL(callbackFunc) {
+        this._registerCallback(this.onChangeURLCallbacks, callbackFunc);
+    }
+
+    deregisterOnChangeURL(callbackFunc) {
+        _this._deregisterCallback(this.onChangeURLCallbacks, callbackFunc);
     }
 }
 
